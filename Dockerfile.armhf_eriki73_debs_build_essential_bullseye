@@ -1,6 +1,6 @@
-# Pull latest Debian %(tag)s
+# Pull latest Debian bullseye
 ARG ARCH=
-FROM ${ARCH}/debian:%(tag)s
+FROM ${ARCH}/debian:bullseye
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NOWARNINGS yes
@@ -13,13 +13,12 @@ RUN apt-get update && apt-get install --yes ca-certificates
 # Note: .dummy files used to keep the directory hierarchy in git are
 # copied too, see moby/moby#26332
 COPY repositories/all/* /etc/apt/sources.list.d/
-COPY repositories/%(arch)s/* /etc/apt/sources.list.d/
+COPY repositories/armhf/* /etc/apt/sources.list.d/
 
 COPY keyrings/all/* /etc/apt/droidian-gpg.d/
-COPY keyrings/%(arch)s/* /etc/apt/droidian-gpg.d/
+COPY keyrings/armhf/* /etc/apt/droidian-gpg.d/
 
 COPY common/apt.conf.d/* /etc/apt/apt.conf.d/
-COPY common/preferences.d/* /etc/apt/preferences.d/
 
 # Copy deployer for repo.droidian.org
 COPY extra/repo-droidian-deploy.sh /usr/local/bin
@@ -37,4 +36,5 @@ RUN apt-get update && apt-get install -y --allow-downgrades \
  openssh-client \
  rsync \
  releng-tools \
+ droidian-apt-config \
  droidian-archive-keyring && apt-get dist-upgrade -y --allow-downgrades

@@ -6,4 +6,4 @@
 set -e
 
 echo "${GPG_STAGINGPRODUCTION_SIGNING_KEY}" | gpg --import
-exec debsign -kC14B92A04D37C9FF *.changes
+exec debsign -k6A546270CDFD4BB5 *.changes

@@ -1,7 +1,7 @@
 # droidian docker images build definition for GitHub Actions
 # Contact: Eugenio "g7" Paolantonio <me@medesimo.eu>
 
-name: droidian docker-images
+name: eriki73 docker-images
 
 on:
   schedule:
@@ -16,9 +16,9 @@ jobs:
       fail-fast: true
       matrix:
         arch: [amd64, armhf, arm64]
-        template: [build-essential, rootfs-builder, aptly-intake]
+        template: [build-essential]
         dist: [bullseye]
-        namespace: [droidian]
+        namespace: [eriki73-debs]
         exclude:
           - template: aptly-intake
             arch: arm64

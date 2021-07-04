@@ -1,0 +1,9 @@
+# Block Droidian packages
+Package: *
+Pin: release o=hybris-mobian
+Pin-Priority: -1
+
+# Allow archive-keyring, releng-tool and glibc stuff
+Package: droidian-archive-keyring releng-tools libc6 locales-all locales nscd libc-bin libc-dev-bin libc6-dev
+Pin: release o=hybris-mobian
+Pin-Priority: 1001
