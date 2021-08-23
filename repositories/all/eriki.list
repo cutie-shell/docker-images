@@ -1,0 +1,2 @@
+deb [signed-by=/etc/apt/droidian-gpg.d/eriki73.asc] http://production.deb.erikinkinen.fi/ bullseye main
+
