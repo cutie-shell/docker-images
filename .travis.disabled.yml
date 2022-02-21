@@ -16,7 +16,7 @@ _docker_build_template: &docker_build_template
 
   before_install:
     # 32-bit containers in 64-bit hosts are broken on recent guests,
-    # with bullseye being among those.
+    # with bookworm being among those.
     # See https://github.com/tianon/docker-brew-ubuntu-core/issues/183
     # for more details.
     # Given that we're unable to disable seccomp on docker builds,
@@ -64,19 +64,19 @@ jobs:
   include:
   # AMD64 (x86_64) image containing toolchains and essential build
   # tools
-  - name: amd64/hybrismobian/build-essential:bullseye
+  - name: amd64/hybrismobian/build-essential:bookworm
     arch: amd64
     <<: *docker_build_template
   # ARM64 (AArch64) image containing toolchains and essential build
   # tools
-  - name: arm64/hybrismobian/build-essential:bullseye
+  - name: arm64/hybrismobian/build-essential:bookworm
     arch: arm64-graviton2
     virt: vm # required to route the job to arm64-graviton2
     group: edge # required to route the job to arm64-graviton2
     <<: *docker_build_template
   # ARMHF (armv7hf) image containing toolchains and essential build
   # tools
-  - name: armhf/hybrismobian/build-essential:bullseye
+  - name: armhf/hybrismobian/build-essential:bookworm
     arch: arm64-graviton2
     virt: vm # required to route the job to arm64-graviton2
     group: edge # required to route the job to arm64-graviton2
@@ -85,17 +85,17 @@ jobs:
     <<: *docker_build_template
 
   # AMD64 (x86_64) image containing rootfs build tools
-  - name: amd64/hybrismobian/rootfs-builder:bullseye
+  - name: amd64/hybrismobian/rootfs-builder:bookworm
     arch: amd64
     <<: *docker_build_template
   # ARM64 (AArch64) image containing rootfs build tools
-  - name: arm64/hybrismobian/rootfs-builder:bullseye
+  - name: arm64/hybrismobian/rootfs-builder:bookworm
     arch: arm64-graviton2
     virt: vm # required to route the job to arm64-graviton2
     group: edge # required to route the job to arm64-graviton2
     <<: *docker_build_template
   # ARMHF (armv7hf) image containing rootfs build tools
-  - name: armhf/hybrismobian/rootfs-builder:bullseye
+  - name: armhf/hybrismobian/rootfs-builder:bookworm
     arch: arm64-graviton2
     virt: vm # required to route the job to arm64-graviton2
     group: edge # required to route the job to arm64-graviton2
@@ -104,7 +104,7 @@ jobs:
     <<: *docker_build_template
 
   # AMD64 (x86_64) image containing tools for repository management
-  - name: amd64/hybrismobian/aptly-intake:bullseye
+  - name: amd64/hybrismobian/aptly-intake:bookworm
     arch: amd64
     <<: *docker_build_template
 

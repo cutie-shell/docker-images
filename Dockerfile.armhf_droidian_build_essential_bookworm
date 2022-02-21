@@ -1,6 +1,6 @@
-# Pull latest Debian bullseye
+# Pull latest Debian bookworm
 ARG ARCH=
-FROM ${ARCH}/debian:bullseye
+FROM ${ARCH}/debian:bookworm
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NOWARNINGS yes

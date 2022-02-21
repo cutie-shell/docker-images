@@ -20,25 +20,25 @@ where `@template@` is the template name.
 
 The following strings are replaced:
 
-| String            | Description                            | Example (for `arm64/hybrismobian/build-essential:bullseye`) |
+| String            | Description                            | Example (for `arm64/hybrismobian/build-essential:bookworm`) |
 |-------------------|----------------------------------------|-------------------------------------------------------------|
-| `%(target_name)s` | Sanitized slug of the full target name | `arm64_hybrismobian_build_essential_bullseye`               |
+| `%(target_name)s` | Sanitized slug of the full target name | `arm64_hybrismobian_build_essential_bookworm`               |
 | `%(arch)s`        | Architecture                           | `arm64`                                                     |
 | `%(namespace)s`   | Docker namespace                       | `hybrismobian`                                              |
 | `%(template)s`    | Template name                          | `build-essential`                                           |
-| `%(tag)s`         | Image tag                              | `bullseye`                                                  |
+| `%(tag)s`         | Image tag                              | `bookworm`                                                  |
 
 Once a template has been made, you must add the desired docker images ("full target name") to the build matrix into the
 `.travis.yml` file:
 
 	  # AMD64 (x86_64) image containing toolchains and essential build
 	  # tools
-	  - name: amd64/hybrismobian/build-essential:bullseye
+	  - name: amd64/hybrismobian/build-essential:bookworm
 	    arch: amd64
 	    <<: *docker_build_template
 	  # ARM64 (AArch64) image containing toolchains and essential build
 	  # tools
-	  - name: arm64/hybrismobian/build-essential:bullseye
+	  - name: arm64/hybrismobian/build-essential:bookworm
 	    arch: arm64-graviton2
 	    virt: vm # required to route the job to arm64-graviton2 
 	    group: edge # required to route the job to arm64-graviton2
