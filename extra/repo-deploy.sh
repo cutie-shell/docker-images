@@ -37,7 +37,13 @@ else
 	TARGET="staging"
 fi
 
-gem install deb-s3
+gem install bundler
+
+git clone https://github.com/erikinkinen/deb-s3.git /tmp/deb-s3
+cd /tmp/deb-s3
+bundle add rexml
+bundle install
+bundle binstubs deb-s3 --path=/usr/bin
 
 echo -e "${GPG_PACKAGE_SIGNING_KEY}" | gpg --import
 
@@ -53,6 +59,7 @@ find /tmp/buildd-results/ \
 	--bucket=deb.cutie-shell.org \
 	--prefix=${TARGET} \
 	--codename=bookworm \
+	--lock \
 	--access-key-id=${AWS_ACCESS_KEY_ID} \
 	--secret-access-key=${AWS_SECRET_ACCESS_KEY} \
 	--s3-region=${AWS_DEFAULT_REGION} \
