@@ -25,6 +25,11 @@ COPY common/apt.conf.d/* /etc/apt/apt.conf.d/
 
 # Copy deployer
 COPY extra/repo-deploy.sh /usr/local/bin
+COPY extra/repo-deps.sh /usr/local/bin
+
+RUN mkdir -p /etc/cutie-build/
+COPY extra/cutie-staging.list /etc/cutie-build/
+COPY extra/cutie-production.list /etc/cutie-build/
 
 # Add secondary architectures
 RUN dpkg --add-architecture arm64 && dpkg --add-architecture armhf
