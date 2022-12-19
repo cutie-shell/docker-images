@@ -49,3 +49,7 @@ RUN apt-get update && apt-get install -y --allow-downgrades \
  mobian-archive-keyring && \
  rm -f /etc/apt/sources.list.d/hybris-mobian.list /etc/apt/sources.list.d/mobian.list && \
  apt-get dist-upgrade -y --allow-downgrades
+
+RUN gem install bundler
+RUN git clone https://github.com/erikinkinen/deb-s3.git /root/deb-s3
+RUN cd /root/deb-s3 && bundle add rexml && bundle install && bundle binstubs deb-s3 --path=/usr/bin

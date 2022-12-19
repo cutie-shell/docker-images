@@ -37,14 +37,6 @@ else
 	TARGET="staging"
 fi
 
-gem install bundler
-
-git clone https://github.com/erikinkinen/deb-s3.git /tmp/deb-s3
-cd /tmp/deb-s3
-bundle add rexml
-bundle install
-bundle binstubs deb-s3 --path=/usr/bin
-
 echo -e "${GPG_PACKAGE_SIGNING_KEY}" | gpg --import
 
 echo "Uploading data"
