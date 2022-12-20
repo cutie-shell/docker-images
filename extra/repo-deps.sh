@@ -43,5 +43,5 @@ else
 	cp /etc/cutie-build/cutie-staging.list /etc/apt/sources.list.d/
 fi
 
-apt update
-apt dist-upgrade
+apt update || apt update
+apt dist-upgrade || apt dist-upgrade
