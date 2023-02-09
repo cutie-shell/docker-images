@@ -40,12 +40,12 @@ fi
 echo -e "${GPG_PACKAGE_SIGNING_KEY}" | gpg --import
 
 echo "Uploading data"
-find /tmp/buildd-results/ \
-	-maxdepth 1 \
-	-regextype posix-egrep \
-	-regex "/tmp/buildd-results/.*\.(u?deb)$" \
-	-print0 \
-	| xargs -0 -i deb-s3 upload {}\
+deb-s3 upload $(\
+	find /tmp/buildd-results/ \
+		-maxdepth 1 \
+		-regextype posix-egrep \
+		-regex "/tmp/buildd-results/.*\.(u?deb)$" \
+		-print)\
 	--arch="$(dpkg --print-architecture)" \
 	--no-fail-if-exists \
 	--bucket=deb.cutie-shell.org \
