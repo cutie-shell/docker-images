@@ -17,7 +17,7 @@ jobs:
       matrix:
         arch: [amd64, armhf, arm64]
         template: [build-essential]
-        dist: [bookworm]
+        dist: [bookworm, trixie]
         namespace: [eriki73-debs]
         exclude:
           - template: aptly-intake
