@@ -1,2 +1,2 @@
-deb [signed-by=/etc/apt/droidian-gpg.d/cutie.asc] http://deb.cutie-shell.org/staging/ bookworm main
+deb [signed-by=/etc/apt/droidian-gpg.d/cutie.asc] http://deb.cutie-shell.org/staging/ @CODENAME@ main
 

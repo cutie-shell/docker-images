@@ -23,6 +23,9 @@ echo "Determining target"
 if [ -n "${TAG}" ]; then
 	# Tag, should go to production
 	TARGET="production"
+	# Codename is the second part of the tag
+	_split_tag=(${TAG//\// })
+	CODENAME=${_split_tag[1]}
 elif [[ ${BRANCH} = feature/* ]]; then
 	# Feature branch
 	_project=${PROJECT_SLUG//\//-}
@@ -32,15 +35,24 @@ elif [[ ${BRANCH} = feature/* ]]; then
 	_branch=${_branch//_/-}
 	_branch=${_branch//\//-}
 	TARGET=$(echo ${_project}-${_branch} | tr '[:upper:]' '[:lower:]')
+	# Codename is the second part of the branch name
+	_split_branch=(${BRANCH//\// })
+	CODENAME=${_split_branch[1]}
 else
 	# Staging
 	TARGET="staging"
+	# Codename is the branch unless branch is 'droidian'
+	if [ "${BRANCH}" = "droidian" ]; then
+		CODENAME="trixie"
+	else
+		CODENAME="${BRANCH}"
+	fi
 fi
 
 if [[ "${TARGET}" = "production" ]]; then
-	cp /etc/cutie-build/cutie-production.list /etc/apt/sources.list.d/
+	sed "s/@CODENAME@/${CODENAME}/g" /etc/cutie-build/cutie-production.list > /etc/apt/sources.list.d/cutie-production.list
 else
-	cp /etc/cutie-build/cutie-staging.list /etc/apt/sources.list.d/
+	sed "s/@CODENAME@/${CODENAME}/g" /etc/cutie-build/cutie-staging.list > /etc/apt/sources.list.d/cutie-staging.list
 fi
 
 apt update || apt update
