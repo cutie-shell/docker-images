@@ -64,6 +64,7 @@ deb-s3 upload $(\
 	--prefix=${TARGET} \
 	--codename="${CODENAME}" \
 	--lock \
+	--no-preserve-versions \
 	--access-key-id=${AWS_ACCESS_KEY_ID} \
 	--secret-access-key=${AWS_SECRET_ACCESS_KEY} \
 	--s3-region=${AWS_DEFAULT_REGION} \
