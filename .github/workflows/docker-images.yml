@@ -1,7 +1,7 @@
 # droidian docker images build definition for GitHub Actions
 # Contact: Eugenio "g7" Paolantonio <me@medesimo.eu>
 
-name: eriki73 docker-images
+name: cutie-shell docker-images
 
 on:
   workflow_dispatch:
@@ -18,8 +18,8 @@ jobs:
       matrix:
         arch: [amd64, armhf, arm64]
         template: [build-essential]
-        dist: [bookworm, trixie]
-        namespace: [eriki73-debs]
+        dist: [bookworm, trixie, sid]
+        namespace: [cutie-shell]
         exclude:
           - template: aptly-intake
             arch: arm64

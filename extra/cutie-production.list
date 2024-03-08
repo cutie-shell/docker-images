@@ -1,2 +1,0 @@
-deb [signed-by=/etc/apt/droidian-gpg.d/cutie.asc] http://deb.cutie-shell.org/production/ @CODENAME@ main
-

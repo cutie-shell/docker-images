@@ -22,6 +22,7 @@ COPY keyrings/all/* /etc/apt/droidian-gpg.d/
 COPY keyrings/arm64/* /etc/apt/droidian-gpg.d/
 
 COPY common/apt.conf.d/* /etc/apt/apt.conf.d/
+COPY common/preferences.d/* /etc/apt/preferences.d/
 
 # Copy deployer
 COPY extra/repo-deploy.sh /usr/local/bin
@@ -29,7 +30,6 @@ COPY extra/repo-deps.sh /usr/local/bin
 
 RUN mkdir -p /etc/cutie-build/
 COPY extra/cutie-staging.list /etc/cutie-build/
-COPY extra/cutie-production.list /etc/cutie-build/
 
 # Add secondary architectures
 RUN dpkg --add-architecture arm64 && dpkg --add-architecture armhf && dpkg --add-architecture i386
@@ -37,7 +37,7 @@ RUN dpkg --add-architecture arm64 && dpkg --add-architecture armhf && dpkg --add
 # Update and install
 RUN apt-get update && apt-get install -y --allow-downgrades \
  build-essential \
- rubygems \
+ libncurses-dev \
  bash-completion \
  nano \
  devscripts \
@@ -45,13 +45,8 @@ RUN apt-get update && apt-get install -y --allow-downgrades \
  wget \
  openssh-client \
  rsync \
- mkbootimg \
- mkdtboimg \
- releng-tools \
- droidian-apt-config \
- droidian-archive-keyring \
- mobian-archive-keyring && \
- rm -f /etc/apt/sources.list.d/hybris-mobian.list /etc/apt/sources.list.d/mobian.list && \
+ ruby-rubygems \
+ releng-tools && \
  apt-get dist-upgrade -y --allow-downgrades
 
 # Patch dpkg-perl's Patch.pm to avoid overzealous checks
