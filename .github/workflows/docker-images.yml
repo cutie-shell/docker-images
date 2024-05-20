@@ -25,8 +25,6 @@ jobs:
             arch: arm64
           - template: aptly-intake
             arch: armhf
-          - dist: sid
-            arch: armhf
 
     name: ${{ matrix.template }}:${{ matrix.dist }} on ${{ matrix.arch }}
 
