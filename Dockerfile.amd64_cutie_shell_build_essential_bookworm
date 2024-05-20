@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y --allow-downgrades \
  openssh-client \
  rsync \
  ruby-rubygems \
+ ruby-dev \
  releng-tools && \
  apt-get dist-upgrade -y --allow-downgrades
 
