@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: true
@@ -20,11 +20,6 @@ jobs:
         template: [build-essential]
         dist: [bookworm, trixie, sid]
         namespace: [cutie-shell]
-        exclude:
-          - template: aptly-intake
-            arch: arm64
-          - template: aptly-intake
-            arch: armhf
 
     name: ${{ matrix.template }}:${{ matrix.dist }} on ${{ matrix.arch }}
 
