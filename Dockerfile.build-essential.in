@@ -59,4 +59,4 @@ RUN \
 
 RUN gem install bundler
 RUN git clone https://github.com/deb-s3/deb-s3.git /root/deb-s3
-RUN cd /root/deb-s3 && bundle add rexml && bundle install && bundle binstubs deb-s3 --path=/usr/bin
+RUN cd /root/deb-s3 && sed -i '/^gem "rake",/d' Gemfile && bundle add rexml && bundle install && bundle binstubs deb-s3 --path=/usr/bin
