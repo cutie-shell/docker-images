@@ -15,14 +15,9 @@ RUN apt-get update && apt-get install --yes ca-certificates
 COPY repositories/sid/all/* /etc/apt/sources.list.d/
 COPY repositories/sid/arm64/* /etc/apt/sources.list.d/
 
-# Copy apt preferences
-COPY preferences/sid/* /etc/apt/preferences.d/
-
 COPY keyrings/all/* /etc/apt/droidian-gpg.d/
 COPY keyrings/arm64/* /etc/apt/droidian-gpg.d/
-
 COPY common/apt.conf.d/* /etc/apt/apt.conf.d/
-COPY common/preferences.d/* /etc/apt/preferences.d/
 
 # Copy deployer
 COPY extra/repo-deploy.sh /usr/local/bin

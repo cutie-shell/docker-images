@@ -15,14 +15,9 @@ RUN apt-get update && apt-get install --yes ca-certificates
 COPY repositories/bookworm/all/* /etc/apt/sources.list.d/
 COPY repositories/bookworm/amd64/* /etc/apt/sources.list.d/
 
-# Copy apt preferences
-COPY preferences/bookworm/* /etc/apt/preferences.d/
-
 COPY keyrings/all/* /etc/apt/droidian-gpg.d/
 COPY keyrings/amd64/* /etc/apt/droidian-gpg.d/
-
 COPY common/apt.conf.d/* /etc/apt/apt.conf.d/
-COPY common/preferences.d/* /etc/apt/preferences.d/
 
 # Copy deployer
 COPY extra/repo-deploy.sh /usr/local/bin
